@@ -1,11 +1,14 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu, MenuItem } = require("electron");
 const path = require("path");
 const url = require("url");
 
 let win;
 
 function createWindow() {
-  win = new BrowserWindow({ width: 800, height: 600 });
+  win = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
 
   // load the dist folder from Angular
   win.loadURL(
@@ -16,13 +19,45 @@ function createWindow() {
     })
   );
 
-  // The following is optional and will open the DevTools:
-  // win.webContents.openDevTools()
-
   win.on("closed", () => {
     win = null;
   });
 }
+
+const template = [
+  {
+    label: 'Edit',
+    submenu: [
+      {role: 'undo'},
+      {role: 'redo'},
+      {type: 'separator'},
+      {role: 'cut'},
+      {role: 'copy'},
+      {role: 'paste'}
+    ]
+  },
+
+  {
+    role: 'window',
+    submenu: [
+      {role: 'minimize'},
+      {role: 'close'}
+    ]
+  },
+
+  {
+    role: 'help',
+    submenu: [
+      {
+        label: 'Learn More',
+        click(){ console.log("OWO") }
+      }
+    ]
+  }
+];
+
+const menu = Menu.buildFromTemplate(template);
+Menu.setApplicationMenu(menu);
 
 app.on("ready", createWindow);
 

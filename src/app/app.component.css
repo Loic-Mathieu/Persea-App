@@ -1,0 +1,7 @@
+#PerseaHeader > * {
+  padding: 10px;
+}
+
+#PerseaApp > * {
+    height: 100%;
+}
