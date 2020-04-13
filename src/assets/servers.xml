@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Servers>
+    <ActiveServer>
+        <name>active server</name>
+        <url>http://127.0.0.1:8080</url>
+    </ActiveServer>
+    <SavedServers>
+        <server>
+            <name>a</name>
+            <url>http://127.0.0.1:8080</url>
+        </server>
+        <server>
+            <name>b</name>
+            <url>http://127.0.0.1:8080</url>
+        </server>
+    </SavedServers>
+</Servers>
