@@ -1,14 +1,11 @@
-import {Gender} from "./gender";
-import {Address} from "../Address";
-
 export class Contributor {
     id: number;
 
     lastName: string;
     firstName: string;
-    gender: Gender;
+    gender: number;
 
-    address: Address;
+    address: number;
 
     phoneNumber: string;
     mail: string;

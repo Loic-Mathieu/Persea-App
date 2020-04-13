@@ -1,4 +1,49 @@
 <div class="content" role="main">
-    <section class="container">
-    </section>
+    <ng-sidebar-container style="height: 80vh;">
+        <!-- Side list -->
+        <ng-sidebar style="height: 100%;"
+                    [(opened)]="sidebarToggled"
+                    [dock]="true"
+                    [dockedSize]="'40px'"
+                    [mode]="'over'"
+                    [position]="'left'"
+        >
+            <div id="client-sidebar">
+                <div class="toggle-btn float-lg-right"
+                        (click)="toggleSideBar()"
+                >
+                    {{sidebarToggled ? '<' : '>'}}
+                </div>
+
+                <div id="client-list">
+                    <div class="actions text-center">
+                        <button class="btn-outline-primary"
+                                (click)="addOne()"
+                        >
+                            Ajouter client
+                        </button>
+                        <div class="input-group">
+                            <input class="form-control">
+                        </div>
+                    </div>
+
+                    <ul class="list-group clients">
+                        <li class="list-group-item list-group-item-action"
+                            *ngFor="let client of clients"
+                            [class.active]="selectedClient && client.id === selectedClient.id"
+                            (click)="selectOne(client)"
+                        >
+                            <span>{{client.lastName}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </ng-sidebar>
+
+        <!-- Main panel -->
+        <div ng-sidebar-content class="container-fluid">
+            <app-client-details [client]="selectedClient" *ngIf="selectedClient"></app-client-details>
+        </div>
+
+    </ng-sidebar-container>
 </div>

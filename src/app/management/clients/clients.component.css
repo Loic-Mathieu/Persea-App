@@ -1,4 +1,41 @@
-.column-content {
-    width: 100%;
-    border-right: 1px solid rgba(0, 33, 10, 0.82);
+#client-sidebar {
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: visible;
+
+    min-width: 350px;
+
+    position: relative;
+}
+
+#client-list {
+    width: 400px;
+    margin-right: 40px;
+
+    border-right: solid black 1px;
+
+    height: 100%;
+}
+
+.clients {
+    overflow-y: scroll;
+    height: 90%;
+}
+
+.toggle-btn {
+    position: absolute;
+
+    right: 0;
+    top: 50px;
+
+    width: 40px;
+    height: 50px;
+
+    cursor: pointer;
+
+    border-right: solid black 1px;
+    border-bottom: solid black 1px;
+    border-top: solid black 1px;
+
+    border-radius: 0 25px 25px 0;
 }
