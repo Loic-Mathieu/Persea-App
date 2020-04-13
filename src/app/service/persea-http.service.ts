@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {from, Observable, of} from "rxjs";
-import {flatMap, map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {flatMap} from "rxjs/operators";
 import {ServerService} from "../settings/server/server.service";
 import {fromPromise} from "rxjs/internal-compatibility";
+
+class JsonOption {
+    headers?: HttpHeaders;
+    observe?: 'body';
+    params: HttpParams;
+    reportProgress?: boolean;
+    responseType: 'json';
+    withCredentials?: boolean;
+}
 
 @Injectable({
     providedIn: 'root'
@@ -32,31 +41,21 @@ export class PerseaHttpService {
         this.serverUrl = url;
     }
 
-    get<T>(url: string): Observable<T> {
-        return fromPromise(this.getServerUrl())
-            .pipe(flatMap(activeUrl => this.http.get<T>(encodeURI(activeUrl + url))
-                    .pipe(map(r => r))
-            ));
+    get<T>(url: string, options?: JsonOption): Observable<T> {
+        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<T>>(activeUrl =>
+            this.http.get<T>(encodeURI(activeUrl + url), options)
+        ));
     }
 
-    post<T>(url: string, body: any | null): Observable<T> {
-        const header = new HttpHeaders()
-            .set('Content-Type', 'text/xml')
-            .append('Access-Control-Allow-Methods', 'GET')
-            .append('Access-Control-Allow-Origin', '*')
-            .append('Access-Control-Allow-Headers',
-                'Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method');
-
-        return fromPromise(this.getServerUrl())
-            .pipe(flatMap(activeUrl => this.http.post<{data: T}>(encodeURI(activeUrl + url), body)
-                .pipe(map(result => result.data))
-            ));
+    post<T>(url: string, body: any | null, options?: JsonOption): Observable<T> {
+        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<T>>(activeUrl =>
+            this.http.post<T>(encodeURI(activeUrl + url), body, options)
+        ));
     }
 
-    delete<T>(url: string): Observable<T> {
-        return fromPromise(this.getServerUrl())
-            .pipe(flatMap(activeUrl => this.http.delete<{data: T}>(encodeURI(activeUrl + url))
-                .pipe(map(result => result.data))
-            ));
+    delete<T>(url: string, options?: JsonOption): Observable<T> {
+        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<T>>(activeUrl =>
+            this.http.delete<T>(encodeURI(activeUrl + url), options)
+        ));
     }
 }
