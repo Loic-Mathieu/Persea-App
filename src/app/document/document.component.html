@@ -1,0 +1,42 @@
+<div style="display: none;">
+    <input type="file"
+           accept=".docx,.odt"
+           (change)="uploadFile($event.target.files[0])"
+           #hiddenFileInput
+    >
+</div>
+
+<div class="content" role="main">
+    <div class="container-xl">
+        <div class="row">
+            <!-- Document panel -->
+            <div class="col">
+                <form [formGroup]="form" (ngSubmit)="createPdf()">
+                    <div class="form-group">
+                        <label for="documentText"></label>
+                        <textarea class="form-control"
+                                  name="documentText"
+                                  id="documentText"
+                                  required
+                                  formControlName="documentText"
+                        >
+                        </textarea>
+                    </div>
+
+                    <button type="submit" [disabled]="form.invalid">
+                        Créer un pdf
+                    </button>
+                </form>
+            </div>
+
+            <!-- Action panel -->
+            <div class="col">
+                <div>
+                    <button (click)="hiddenFileInput.click()" class="waves-effect waves-light btn">
+                        Sélectionnez un document
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

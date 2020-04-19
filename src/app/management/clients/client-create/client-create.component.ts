@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ClientService} from "../client.service";
-import {ServerService} from "../../../settings/server/server.service";
 import {Client} from "../../../model/contributors/client";
 import {Gender} from "../../../model/contributors/gender";
-import {GenerateCommand} from "@angular/cli/commands/generate-impl";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -14,7 +12,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class ClientCreateComponent implements OnInit {
 
     form = new FormGroup({
-
         lastName: new FormControl('', Validators.required),
         firstName: new FormControl('', Validators.required),
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {flatMap} from "rxjs/operators";
 import {ServerService} from "../settings/server/server.service";
@@ -47,9 +47,9 @@ export class PerseaHttpService {
         ));
     }
 
-    post<T>(url: string, body: any | null, options?: JsonOption): Observable<T> {
-        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<T>>(activeUrl =>
-            this.http.post<T>(encodeURI(activeUrl + url), body, options)
+    post(url: string, body: any | null, options?: JsonOption): Observable<any> {
+        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<any>>(activeUrl =>
+            this.http.post<any>(encodeURI(activeUrl + url), body, options)
         ));
     }
 
@@ -57,5 +57,17 @@ export class PerseaHttpService {
         return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<T>>(activeUrl =>
             this.http.delete<T>(encodeURI(activeUrl + url), options)
         ));
+    }
+
+    /*  ======   */
+
+    postFile(url: string, data: FormData): Observable<HttpEvent<{}>> {
+        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<HttpEvent<{}>>>(activeUrl => {
+            const newRequest = new HttpRequest('POST', activeUrl + url, data, {
+                reportProgress: true,
+                responseType: 'text'
+            });
+            return this.http.request(newRequest);
+        }));
     }
 }

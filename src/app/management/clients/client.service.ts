@@ -22,6 +22,6 @@ export class ClientService {
     }
 
     public save(client: Client): Observable<number> {
-        return this.http.post<number>(`${this.clientUri}`, client);
+        return this.http.post(`${this.clientUri}`, client);
     }
 }
