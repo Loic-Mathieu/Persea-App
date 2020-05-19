@@ -39,7 +39,6 @@ export class CourtCasesComponent implements OnInit {
         this.courtCaseFilter.pageNumber = $event.pageIndex;
         this.courtCaseFilter.pageSize = $event.pageSize;
 
-        console.log(this.courtCaseFilter);
         this.searchData();
     }
 

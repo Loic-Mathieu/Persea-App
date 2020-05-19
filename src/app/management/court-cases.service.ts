@@ -13,7 +13,6 @@ export class CourtCasesService {
     constructor(private http: PerseaHttpService) { }
 
     public getSize(filter: CourtCaseFilter): Observable<number> {
-        console.log(`${this.courtCaseUri}${filter.createUrlParameters()}`);
         return this.http.get<number>(`${this.courtCaseUri}` + "/size" + filter.createUrlParameters());
     }
 
