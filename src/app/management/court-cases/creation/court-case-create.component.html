@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Créer un nouveau dossier</h2>
+<mat-dialog-content>
+    <div>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-group">
+                <label for="mainClient">mainClient</label>
+                <input class="form-control"
+                       name="mainClient"
+                       id="mainClient"
+                       required
+                       formControlName="mainClient"
+                >
+                <div *ngIf="form.controls.mainClient.touched && form.controls.mainClient.invalid" class="alert alert-danger">
+                    <div *ngIf="form.controls.mainClient.errors.required">mainClient is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mainOpposition">mainOpposition</label>
+                <input class="form-control"
+                       name="mainOpposition"
+                       id="mainOpposition"
+                       required
+                       formControlName="mainOpposition"
+                >
+                <div *ngIf="form.controls.mainOpposition.touched && form.controls.mainOpposition.invalid" class="alert alert-danger">
+                    <div *ngIf="form.controls.mainOpposition.errors.required">mainOpposition is required.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mainLawyer">mainLawyer</label>
+                <input class="form-control"
+                       name="mainLawyer"
+                       id="mainLawyer"
+                       required
+                       formControlName="mainLawyer"
+                >
+                <div *ngIf="form.controls.mainLawyer.touched && form.controls.mainLawyer.invalid" class="alert alert-danger">
+                    <div *ngIf="form.controls.mainLawyer.errors.required">mainLawyer is required.</div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="form.invalid">
+                Valider
+            </button>
+        </form>
+    </div>
+</mat-dialog-content>

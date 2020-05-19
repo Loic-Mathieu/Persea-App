@@ -13,7 +13,10 @@ import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {CourtCasesService} from "./court-cases.service";
+import {CourtCasesService} from "./court-cases/court-cases.service";
+import { CourtCaseCreateComponent } from './court-cases/creation/court-case-create.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
     declarations: [
@@ -21,6 +24,7 @@ import {CourtCasesService} from "./court-cases.service";
         CourtCasesComponent,
         ClientDetailsComponent,
         ClientCreateComponent,
+        CourtCaseCreateComponent,
     ],
     imports: [
         ManagementRoutingModule,
@@ -32,7 +36,9 @@ import {CourtCasesService} from "./court-cases.service";
         MatTableModule,
         MatPaginatorModule,
         MatSortModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatDialogModule,
+        MatButtonModule
     ],
     providers: [
         ClientService,

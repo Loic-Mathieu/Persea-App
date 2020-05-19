@@ -43,14 +43,16 @@ export class PerseaHttpService {
 
     get<T>(url: string, options?: JsonOption): Observable<T> {
         return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<T>>(activeUrl =>
-            this.http.get<T>(encodeURI(activeUrl + url), options)
+           this.http.get<T>(encodeURI(activeUrl + url), options)
         ));
     }
 
     post(url: string, body: any | null, options?: JsonOption): Observable<any> {
-        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<any>>(activeUrl =>
-            this.http.post<any>(encodeURI(activeUrl + url), body, options)
-        ));
+        console.log("well");
+        return fromPromise(this.getServerUrl()).pipe(flatMap<string, Observable<any>>(activeUrl => {
+            console.log("still ok " + activeUrl);
+            return this.http.post<any>(encodeURI(activeUrl + url), body, options);
+        }));
     }
 
     delete<T>(url: string, options?: JsonOption): Observable<T> {
