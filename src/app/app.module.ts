@@ -11,6 +11,7 @@ import {PerseaXmlService} from "./service/persea-xml.service";
 import {DocumentComponent} from "./document/document.component";
 import {DocumentService} from "./document/document.service";
 import {ReactiveFormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {ReactiveFormsModule} from "@angular/forms";
         AppRoutingModule,
         BrowserModule,
         HttpClientModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        BrowserAnimationsModule
     ],
     providers: [
         PerseaHttpService,

@@ -8,6 +8,12 @@ import {CommonModule} from "@angular/common";
 import { ClientCreateComponent } from './clients/client-create/client-create.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ClientService} from "./clients/client.service";
+import {MatInputModule} from "@angular/material/input";
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {CourtCasesService} from "./court-cases.service";
 
 @NgModule({
     declarations: [
@@ -22,9 +28,15 @@ import {ClientService} from "./clients/client.service";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        MatInputModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatProgressSpinnerModule
     ],
     providers: [
-        ClientService
+        ClientService,
+        CourtCasesService
     ]
 })
 export class ManagementModule { }
